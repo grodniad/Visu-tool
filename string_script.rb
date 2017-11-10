@@ -38,6 +38,7 @@ def getPath
 
 	if checkIfEmpty.empty? == true
 		puts "Crowdin_strings folder empty".red
+		File.delete('path.bat')
 		abc = gets.chomp
 		abort
 	end
