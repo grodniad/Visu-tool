@@ -94,11 +94,10 @@ def getPath
 	urdu = "xcopy /s #{scriptPath}crowdin_strings\\ur-PK\\strings.xml #{finalPath}\\values-ur-rPK /Y"
 	vietnamese = "xcopy /s #{scriptPath}crowdin_strings\\vi\\strings.xml #{finalPath}\\values-vi /Y"
 	chinese = "xcopy /s #{scriptPath}crowdin_strings\\zh-CN\\strings.xml #{finalPath}\\values-zh-rCN /Y"
-
-	# romanian = 
+	romanian = "xcopy /s #{scriptPath}crowdin_strings\\ro\\strings.xml #{finalPath}\\values-ro-xhdpi /Y"
 
 	File.open('execute.bat', 'a') do |f2|
-	  	f2.puts "#{arabic}\n#{german}\n#{spanish}\n#{french}\n#{hindi}\n#{indonesian}\n#{italian}\n#{japanese}\n#{korean}\n#{malay}\n#{polish}\n#{portuguese}\n#{brazilian}\n#{russian}\n#{thai}\n#{turkish}\n#{urdu}\n#{vietnamese}\n#{chinese}"
+	  	f2.puts "#{arabic}\n#{german}\n#{spanish}\n#{french}\n#{hindi}\n#{indonesian}\n#{italian}\n#{japanese}\n#{korean}\n#{malay}\n#{polish}\n#{portuguese}\n#{brazilian}\n#{russian}\n#{thai}\n#{turkish}\n#{urdu}\n#{vietnamese}\n#{chinese}\n#{romanian}"
 	end
 
 	system('execute.bat')
