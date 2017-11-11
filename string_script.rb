@@ -66,8 +66,11 @@ def getPath
 ▒▒▓▒▒▒▒▒▓ ".black_on_white
 		puts "\n"
 		puts "\n"
-		puts " Crowdin_strings folder empty ".red_on_white
-		puts " Aborting script 
+		puts " Crowdin_strings folder / project path folder is empty ".red_on_white
+		puts " Plese check if the following paths are correct:
+
+		Script path: #{scriptPath}
+		Project path: #{finalPath}
 		".red_on_white
 		File.delete('path.bat')
 		print " Press any key to continue... "
