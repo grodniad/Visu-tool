@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'colored'
 require 'open3'
 
@@ -37,8 +39,38 @@ def getPath
 	checkIfEmpty = Dir.glob 'crowdin_strings/*/'
 
 	if checkIfEmpty.empty? == true
-		puts "Crowdin_strings folder empty".red
+		system "cls"
+		puts"
+▓▓▓▓ 
+▒▒▒▓▓ 
+▒▒▒▒▒▓ 
+▒▒▒▒▒▒▓ 
+▒▒▒▒▒▒▓ 
+▒▒▒▒▒▒▒▓ 
+▒▒▒▒▒▒▒▓▓▓ 
+▒▓▓▓▓▓▓░░░▓ 
+▒▓░░░░▓░░░░▓ 
+▓░░░░░░▓░▓░▓ 
+▓░░░░░░▓░░░▓ 
+▓░░▓░░░▓▓▓▓ 
+▒▓░░░░▓▒▒▒▒▓ 
+▒▒▓▓▓▓▒▒▒▒▒▓ 
+▒▒▒▒▒▒▒▒▓▓▓▓ 
+▒▒▒▒▒▓▓▓▒▒▒▒▓ 
+▒▒▒▒▓▒▒▒▒▒▒▒▒▓   DOH!!
+▒▒▒▓▒▒▒▒▒▒▒▒▒▓ 
+▒▒▓▒▒▒▒▒▒▒▒▒▒▒▓ 
+▒▓▒▓▒▒▒▒▒▒▒▒▒▓ 
+▒▓▒▓▓▓▓▓▓▓▓▓▓ 
+▒▓▒▒▒▒▒▒▒▓ 
+▒▒▓▒▒▒▒▒▓ ".black_on_white
+		puts "\n"
+		puts "\n"
+		puts " Crowdin_strings folder empty ".red_on_white
+		puts " Aborting script 
+		".red_on_white
 		File.delete('path.bat')
+		print " Press any key to continue... "
 		abc = gets.chomp
 		abort
 	end
@@ -72,6 +104,31 @@ def getPath
 	system('execute.bat')
 	File.delete('execute.bat')
 	File.delete('path.bat')
+
+	system "cls"
+	puts "\n"
+	puts "
+	░░░░░░░░░░░░░░░ ░░█████████
+░░███████░░░░░░░░░░███▒▒▒▒▒▒▒▒███
+░░█▒▒▒▒▒▒█░░░░░░░███▒▒▒▒▒▒▒▒▒▒▒▒▒███
+░░░█▒▒▒▒▒▒█░░░░██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██
+░░░░█▒▒▒▒▒█░░░██▒▒▒▒▒██▒▒▒▒▒▒██▒▒▒▒▒███
+░░░░░█▒▒▒█░░░█▒▒▒▒▒▒████▒▒▒▒████▒▒▒▒▒▒██
+░░░█████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██
+░░░█▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▒▒▒▒▒▒██
+░██▒▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒██▒▒▒▒▒▒▒▒▒▒██▒▒▒▒██
+██▒▒▒███████████▒▒▒▒▒██▒▒▒▒▒▒▒▒██▒▒▒▒▒██
+█▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▒████████▒▒▒▒▒▒▒██
+██▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██
+░█▒▒▒███████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██
+░██▒▒▒▒▒▒▒▒▒▒████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█
+░░████████████░░░█████████████████".black_on_white
+puts "\n"
+puts " All done! Hope this script made your life easier".green
+puts " 												Made by Claudiu B"
+puts "\n"
+print " Press any key to exit..."
+exit = gets.chomp
 end
 
 getPath
