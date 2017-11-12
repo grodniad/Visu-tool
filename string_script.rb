@@ -103,6 +103,11 @@ def getPath
 	  	f2.puts "#{arabic}\n#{german}\n#{spanish}\n#{french}\n#{hindi}\n#{indonesian}\n#{italian}\n#{japanese}\n#{korean}\n#{malay}\n#{polish}\n#{portuguese}\n#{brazilian}\n#{russian}\n#{thai}\n#{turkish}\n#{urdu}\n#{vietnamese}\n#{chinese}\n#{romanian}"
 	end
 
+	system "cls"
+	puts " 
+	All is ready, press ENTER to start"
+	enter = gets.chomp
+
 	system('execute.bat')
 	File.delete('execute.bat')
 	File.delete('path.bat')
