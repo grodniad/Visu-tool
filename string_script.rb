@@ -3,7 +3,10 @@
 require 'colored'
 require 'open3'
 
+
+
 def getPath
+	
 	var = File.exist?("path.txt")
 	toWrite = "@echo off
 		echo %~dp0
@@ -63,15 +66,15 @@ def getPath
 ▒▓▒▓▒▒▒▒▒▒▒▒▒▓ 
 ▒▓▒▓▓▓▓▓▓▓▓▓▓ 
 ▒▓▒▒▒▒▒▒▒▓ 
-▒▒▓▒▒▒▒▒▓ ".black_on_white
+▒▒▓▒▒▒▒▒▓ "
 		puts "\n"
 		puts "\n"
-		puts " Crowdin_strings folder / project path folder is empty ".red_on_white
+		puts " Crowdin_strings folder / project path folder is empty "
 		puts " Plese check if the following paths are correct:
 
 		Script path: #{scriptPath}
 		Project path: #{finalPath}
-		".red_on_white
+		"
 		File.delete('path.bat')
 		print " Press any key to continue... "
 		abc = gets.chomp
@@ -98,24 +101,32 @@ def getPath
 	vietnamese = "xcopy /s #{scriptPath}crowdin_strings\\vi\\strings.xml #{finalPath}\\values-vi /Y"
 	chinese = "xcopy /s #{scriptPath}crowdin_strings\\zh-CN\\strings.xml #{finalPath}\\values-zh-rCN /Y"
 	romanian = "xcopy /s #{scriptPath}crowdin_strings\\ro\\strings.xml #{finalPath}\\values-ro-xhdpi /Y"
+	# to add when ready
+	czech = "xcopy /s #{scriptPath}crowdin_strings\\cs\\strings.xml #{finalPath}\\values-ro-xhdpi /Y"
 
-	File.open('execute.bat', 'a') do |f2|
+	executeBatch = "execute.bat"
+	File.open(executeBatch, 'a') do |f2|
 	  	f2.puts "#{arabic}\n#{german}\n#{spanish}\n#{french}\n#{hindi}\n#{indonesian}\n#{italian}\n#{japanese}\n#{korean}\n#{malay}\n#{polish}\n#{portuguese}\n#{brazilian}\n#{russian}\n#{thai}\n#{turkish}\n#{urdu}\n#{vietnamese}\n#{chinese}\n#{romanian}"
 	end
 
+
 	system "cls"
 	puts " 
-	All is ready, press ENTER to start"
+	All is ready, press ENTER to start..."
 	enter = gets.chomp
+	start = Time.new
+	system(executeBatch)
 
-	system('execute.bat')
 	File.delete('execute.bat')
 	File.delete('path.bat')
-
+	ended = Time.new
 	system "cls"
+
+	
+
 	puts "\n"
 	puts "
-	░░░░░░░░░░░░░░░ ░░█████████
+░░░░░░░░░░░░░░░░░░░ ░░█████████
 ░░███████░░░░░░░░░░███▒▒▒▒▒▒▒▒███
 ░░█▒▒▒▒▒▒█░░░░░░░███▒▒▒▒▒▒▒▒▒▒▒▒▒███
 ░░░█▒▒▒▒▒▒█░░░░██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██
@@ -129,13 +140,33 @@ def getPath
 ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██
 ░█▒▒▒███████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██
 ░██▒▒▒▒▒▒▒▒▒▒████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█
-░░████████████░░░█████████████████".black_on_white
-puts "\n"
-puts " All done! Hope this script made your life easier".green
-puts " 												Made by Claudiu B"
-puts "\n"
-print " Press any key to exit..."
-exit = gets.chomp
+░░████████████░░░█████████████████"
+	puts "\n"
+	puts " All done! Hope this script made your life easier"
+	puts "						Made by Claudiu B"
+	puts "						Made for Florin 'Juliano' Zanfir"
+	puts "\n"
+	scriptTimer = ended - start 
+	timerToSeconds = scriptTimer.to_s
+	timeToDisplay = timerToSeconds[0...4]
+	puts " Script run time: #{timeToDisplay} seconds"
+	puts " Press ENTER to close script and delete crowdin_strings folder content"
+	exit = gets.chomp
 end
 
+def remove_dir(path)
+  if File.directory?(path)
+    Dir.foreach(path) do |file|
+      if ((file.to_s != ".") and (file.to_s != ".."))
+        remove_dir("#{path}/#{file}")
+      end
+    end
+    # Dir.delete(path)
+  else
+    File.delete(path)
+  end
+end
+
+
 getPath
+remove_dir("crowdin_strings")
